@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+*.mp4
+*.wav
+*.aiff
+*.png
+.remotion/
+out/
+local-runs/
+__pycache__/
+*.pyc

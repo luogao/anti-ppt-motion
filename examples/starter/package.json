@@ -1,0 +1,8 @@
+{
+  "name": "anti-ppt-motion-example",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {"studio": "remotion studio src/index.ts --no-open", "check": "tsc --noEmit"},
+  "dependencies": {"@remotion/cli": "4.0.534", "remotion": "4.0.534", "react": "18.3.1", "react-dom": "18.3.1"},
+  "devDependencies": {"typescript": "5.9.3", "@types/react": "18.3.23", "@types/react-dom": "18.3.7"}
+}
