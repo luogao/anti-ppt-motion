@@ -6,10 +6,17 @@ An instruction-only skill for narrated motion videos. It helps agents make
 objects, evidence and relationships carry the explanation instead of relying
 on successive text slides. Fixed shots, text and pauses remain valid choices.
 
-**Status:** v0.1 experimental source release. The infrastructure pilot completed two tasks / four renders; formal runs and human blind
-review are tracked in [eval/results.md](eval/results.md). No improvement claim
-is made before results exist. First target: explicit loading in Codex + Remotion; automatic discovery and other hosts have
-not been validated.
+**当前结论：**12 次正式任务已完成，但主案例对比不明显，尚未证明有增益；介绍视频暂缓。
+
+**Status:** experimental and effectiveness unproven. The first formal batch
+completed 12 tasks / 24 versions, but the owner rejected the preselected main
+comparison because the visible difference was not convincing. Independent blind
+ratings have not been collected. See [actual results and limits](eval/results.md).
+The introductory video is on hold. First tested workflow: explicit loading in
+Codex + Remotion; automatic discovery and other hosts remain unvalidated.
+
+全量首稿、终稿、共同素材和源码放在 [v0.1 实验附件](https://github.com/luogao/anti-ppt-motion/releases/tag/experiment-v0.1)。
+下载 results ZIP 后打开 `index.html`；匿名观看表单为独立 ZIP，不包含组别揭示表。
 
 ## 安装与使用
 
@@ -39,7 +46,7 @@ Skill 本身没有 npm 依赖、不带私有组件，也不需要云端渲染服
 - [固定条件比较协议](eval/protocol.md)和全量结果记录。
 
 对照 A/B 中，两组共享同一份据官方文档整理的 Remotion 技术基线；这不是
-完整官方 Skills 包。B 的唯一额外输入是这份 Skill 包。首稿与相同预算后的
+完整官方 Skills 包。B 的唯一额外显式输入是这份 Skill 包。首稿与相同预算后的
 终稿分开保存。我们不会故意要求 A 制作 PPT，也不会只展示最好的一对。
 
 ## 验证边界

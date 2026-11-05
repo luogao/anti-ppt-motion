@@ -1,0 +1,129 @@
+{
+  "tasks": [
+    {
+      "id": "T1-r1-A",
+      "arm": "A",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 175.68,
+      "input_tokens": 58163,
+      "output_tokens": 6181
+    },
+    {
+      "id": "T1-r1-B",
+      "arm": "B",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 191.912,
+      "input_tokens": 61500,
+      "output_tokens": 5966
+    },
+    {
+      "id": "T1-r2-B",
+      "arm": "B",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 159.67,
+      "input_tokens": 61906,
+      "output_tokens": 6300
+    },
+    {
+      "id": "T1-r2-A",
+      "arm": "A",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 221.017,
+      "input_tokens": 49560,
+      "output_tokens": 6658
+    },
+    {
+      "id": "T2-r1-B",
+      "arm": "B",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 164.421,
+      "input_tokens": 61706,
+      "output_tokens": 6227
+    },
+    {
+      "id": "T2-r1-A",
+      "arm": "A",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 132.752,
+      "input_tokens": 57986,
+      "output_tokens": 4887
+    },
+    {
+      "id": "T2-r2-A",
+      "arm": "A",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 171.938,
+      "input_tokens": 58450,
+      "output_tokens": 5987
+    },
+    {
+      "id": "T2-r2-B",
+      "arm": "B",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 138.808,
+      "input_tokens": 61628,
+      "output_tokens": 5636
+    },
+    {
+      "id": "T3-r1-A",
+      "arm": "A",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 203.692,
+      "input_tokens": 59005,
+      "output_tokens": 7538
+    },
+    {
+      "id": "T3-r1-B",
+      "arm": "B",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 159.787,
+      "input_tokens": 62194,
+      "output_tokens": 6665
+    },
+    {
+      "id": "T3-r2-B",
+      "arm": "B",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 151.407,
+      "input_tokens": 62083,
+      "output_tokens": 6313
+    },
+    {
+      "id": "T3-r2-A",
+      "arm": "A",
+      "status": "rendered",
+      "initial": "rendered",
+      "final": "rendered",
+      "model_elapsed_s": 201.914,
+      "input_tokens": 59023,
+      "output_tokens": 7658
+    }
+  ],
+  "rendered_tasks": 12,
+  "rendered_versions": 24,
+  "human_review": "pending; no human ratings collected",
+  "billing_usd": null,
+  "quality_effect": "unknown; technical success does not establish improvement"
+}

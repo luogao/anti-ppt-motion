@@ -1,0 +1,6 @@
+{
+  "initial_local_revision": "c5c96047c625a0ce6838029ef87a049d5f818db3",
+  "canonical_source_revision": "962135a948991b0fea75ae7ad01a8b4b2e5ba0bd",
+  "frozen_input_hashes_unchanged": true,
+  "note": "An unpublished commit was amended to exclude generated webpack cache; no frozen model or render input changed."
+}
