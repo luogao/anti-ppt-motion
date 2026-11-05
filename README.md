@@ -6,9 +6,9 @@ An instruction-only skill for narrated motion videos. It helps agents make
 objects, evidence and relationships carry the explanation instead of relying
 on successive text slides. Fixed shots, text and pauses remain valid choices.
 
-**Status:** v0.1 experimental candidate. The infrastructure pilot completed two tasks / four renders; formal runs and human blind
+**Status:** v0.1 experimental source release. The infrastructure pilot completed two tasks / four renders; formal runs and human blind
 review are tracked in [eval/results.md](eval/results.md). No improvement claim
-is made before results exist. First target: Codex + Remotion; other hosts have
+is made before results exist. First target: explicit loading in Codex + Remotion; automatic discovery and other hosts have
 not been validated.
 
 ## 安装与使用
@@ -65,3 +65,33 @@ npm run check
 [MIT](LICENSE) covers this repository's original instructions and code.
 Third-party tools, packages and their licenses remain separate. No private
 Motion Kit code, company assets or commercial music is included.
+
+## Running the comparison
+
+The harness needs Codex CLI (tested: 0.166.0), Node (tested: 26.11.1), FFmpeg,
+a Chromium executable and the starter dependencies. The discovery-isolation flag
+is experimental; keep the exact environment in any report. No global config is
+changed by the harness.
+
+Prepare an owner-authorized audio configuration, then run:
+
+```sh
+python3 eval/import_audio.py audio-input.json /path/to/new-assets
+python3 eval/run.py --phase pilot --assets /path/to/new-assets \
+  --output /path/to/new-pilot --model YOUR_MODEL \
+  --browser /path/to/chromium
+```
+
+Render the shared T3 teaching fixture from `examples/starter/src/Fixture.tsx`,
+put it at `T3/product-flow.mp4`, and add its SHA256 in the input manifest. The
+formal protocol uses a new empty output directory and `--phase formal`. Shared
+machines should pass their browser lease wrapper through `--browser-lock`.
+
+`eval/review_page.py BATCH NEW_REVIEW_DIR` creates an offline anonymous review
+form. Its reveal key is stored next to, not inside, the review directory. The
+form saves locally and exports JSON; it does not send ratings to a server.
+
+Source references: [Agent Skills format](https://agentskills.io/specification),
+[Remotion animation](https://www.remotion.dev/docs/animating-properties),
+[Remotion interpolation](https://www.remotion.dev/docs/interpolate),
+[Remotion render CLI](https://www.remotion.dev/docs/cli/render).

@@ -13,7 +13,7 @@
 
 ## Formal comparison
 
-Status: inputs prepared, awaiting batch execution. Three topics × two arms × two
+Status: formal batch running. Three topics × two arms × two
 repeats = 12 tasks. Formal narration uses the existing project workflow and an
 account-owned voice; public release was authorized by the owner. Only normalized
 audio, public text/timings and hashes are eligible for attachments. Voice model
