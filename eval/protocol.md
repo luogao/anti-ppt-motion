@@ -10,8 +10,8 @@ claim of general improvement.
 
 - 1080×1440, 30 fps, 300 frames; identical narration bytes for each pair.
 - Same starter, pinned dependency lock, technical baseline and topic brief.
-- Same model (`gpt-6.1-sol`) and reasoning setting (`xhigh`), matching the local
-  setup at the start of this experiment. Record actual CLI and tool versions.
+- Same model (`gpt-6.1-sol`) and reasoning setting (`medium`), chosen during infrastructure pilot before formal freeze.
+  The initial xhigh pilot was aborted on connection timeouts, not scored. Record actual CLI and tool versions.
 - Fresh nonpersistent `codex exec` sessions; ignore user config for these calls,
   disable host skill discovery, memories, plugins and multi-agent execution;
   omit project/global AGENTS context through the per-run config. Do not change

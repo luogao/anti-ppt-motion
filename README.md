@@ -6,7 +6,7 @@ An instruction-only skill for narrated motion videos. It helps agents make
 objects, evidence and relationships carry the explanation instead of relying
 on successive text slides. Fixed shots, text and pauses remain valid choices.
 
-**Status:** v0.1 work in progress. The controlled experiment and human blind
+**Status:** v0.1 experimental candidate. The infrastructure pilot completed two tasks / four renders; formal runs and human blind
 review are tracked in [eval/results.md](eval/results.md). No improvement claim
 is made before results exist. First target: Codex + Remotion; other hosts have
 not been validated.
@@ -27,7 +27,8 @@ git clone https://github.com/luogao/anti-ppt-motion .agents/skills/anti-ppt-moti
 
 入口：[SKILL.md](SKILL.md)。需要时读取动作方法、反例或观看与返修参考。
 Skill 本身没有 npm 依赖、不带私有组件，也不需要云端渲染服务。制作和渲染
-仍由用户已有工具负责。可使用我们的 [Remotion 最小起点](examples/starter)。
+仍由用户已有工具负责。可使用我们的 [Remotion 最小起点](examples/starter)，并自行提供
+`examples/starter/public/narration.wav`；共同输入也会随实验附件提供。
 
 ## 首版内容
 

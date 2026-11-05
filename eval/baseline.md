@@ -7,6 +7,7 @@ This file is identical in both arms. It paraphrases technical guidance from:
 
 Use the provided React / Remotion starter. Export `Scene` from `src/Scene.tsx`.
 The common Root owns dimensions, duration and the shared narration; do not modify it.
+Do not add or alter audio in Scene; the only audio is the common narration.
 Drive animation using useCurrentFrame() and useVideoConfig(). Clamp interpolation.
 No wall-clock state, unseeded randomness, CSS animation or transitions.
 Use installed dependencies, inline CSS, SVG and public assets. Do not fetch remote assets.

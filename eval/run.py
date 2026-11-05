@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+from datetime import datetime, timezone
 import os
 from pathlib import Path
 import shutil
@@ -33,7 +34,7 @@ def common_prompt(topic, cues):
         +' Export a React component named Scene from src/Scene.tsx. React 18.3.1 / Remotion 4.0.534.'
         +' For T3 you may use public/product-flow.mp4 (muted teaching fixture); the same source is available in both arms.'
         +'\nReturn JSON with plan and scene_tsx. Write the complete source in scene_tsx, with no Markdown fences.'
-        +' Make a polished, coherent and readable motion video for the brief. Use inline CSS/SVG and installed dependencies.'
+        +' Make a polished, coherent and readable motion video for the brief. Keep the source under 220 lines and the plan under 6 sentences. Use inline CSS/SVG and installed dependencies.'
         +' Do not call tools, read files, start browsers, install software or spawn other agents. Everything needed is in this input.')
 
 
@@ -51,7 +52,7 @@ def validate_events(text):
     turns = [e for e in events if e.get('type')=='turn.completed']
     if not turns:
         raise ValueError('No completed model turn')
-    return {'usage':turns[-1].get('usage',{}),'observed_item_types':observed}
+    return {'usage':turns[-1].get('usage',{}),'observed_item_types':observed,'transport_errors':[e.get('message','') for e in events if e.get('type')=='error']}
 
 
 def command(argv, cwd, log, timeout=600, stdin=None):
@@ -78,7 +79,7 @@ def model_call(folder, prompt, model, images):
     output=folder/'response.json'
     argv=['codex','--no-daemon','-a','never','exec','--ignore-user-config','--ephemeral',
           '--skip-git-repo-check','--sandbox','read-only','--model',model,
-          '-c','model_reasoning_effort="xhigh"','-c','features.skip_host_skill_discovery=true',
+          '-c','model_reasoning_effort="medium"','-c','features.skip_host_skill_discovery=true',
           '-c','features.memories=false','-c','features.plugins=false','-c','features.multi_agent=false',
           '-c','project_doc_max_bytes=0','--json','--output-schema',str(folder/'schema.json'),
           '--output-last-message',str(output),'-C',str(folder)]
@@ -86,7 +87,7 @@ def model_call(folder, prompt, model, images):
     argv.append('-')
     result=command(argv,folder,folder/'events.jsonl',stdin=prompt)
     if result['exit_code']:
-        return None,{**result,'status':'generation_failed'}
+        return None,{**result,'status':'generation_infra_failed'}
     try:
         observed=validate_events((folder/'events.jsonl').read_text())
         answer=json.loads(output.read_text())
@@ -119,7 +120,8 @@ def render(folder, args):
                     '-fps_mode','passthrough',str(folder/'frame-%02d.png')],check=True)
     return {'status':'rendered','typecheck':check,'render':result,'video_sha256':sha((folder/'video.mp4').read_bytes()),
             'video':{k:video.get(k) for k in ['width','height','r_frame_rate','nb_frames','duration','codec_name']},
-            'audio':{k:audio.get(k) for k in ['duration','sample_rate','channels','codec_name']}}
+            'audio':{k:audio.get(k) for k in ['duration','sample_rate','channels','codec_name']},
+            'decoded_audio_sha256':sha(subprocess.check_output(['ffmpeg','-v','error','-i',str(folder/'video.mp4'),'-map','0:a:0','-ac','1','-ar','48000','-f','s16le','-']))}
 
 
 def stage(task, name, answer, args):
@@ -143,7 +145,9 @@ def run_task(topic,rep,arm,root,assets,manifest,args,bundle):
     assert sha(audio.read_bytes())==manifest['topics'][topic]['sha256']
     shutil.copy2(audio,task/'narration.wav')
     if topic=='T3':
-        shutil.copy2(assets/'T3/product-flow.mp4',task/'product-flow.mp4')
+        fixture=assets/'T3/product-flow.mp4'
+        assert sha(fixture.read_bytes())==manifest['topics']['T3']['fixture']['sha256']
+        shutil.copy2(fixture,task/'product-flow.mp4')
     common=common_prompt(topic,manifest['topics'][topic]['clauses'])
     prompt=generation_prompt(common,arm,bundle)
     result={'topic':topic,'repeat':rep,'arm':arm,'common_sha256':sha(common.encode()),'audio_sha256':sha(audio.read_bytes()),'stages':{}}
@@ -184,7 +188,7 @@ def main():
     files=BUNDLE_FILES+['eval/baseline.md','eval/protocol.md','eval/run.py']+['examples/'+x for x in TOPICS.values()]
     files+=['examples/starter/'+x for x in ['package.json','package-lock.json','tsconfig.json','src/index.ts','src/Root.tsx','src/Scene.tsx','src/Fixture.tsx']]
     frozen={name:sha((ROOT/name).read_bytes()) for name in files}
-    meta={'phase':args.phase,'model':args.model,'reasoning_effort':'xhigh','cli':subprocess.check_output(['codex','--version'],text=True).strip(),
+    meta={'started_at_utc':datetime.now(timezone.utc).isoformat(),'source_revision':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'node':subprocess.check_output(['node','--version'],text=True).strip(),'phase':args.phase,'model':args.model,'reasoning_effort':'medium','cli':subprocess.check_output(['codex','--version'],text=True).strip(),
           'skill_sha256':sha(bundle.encode()),'files':frozen,'asset_manifest_sha256':sha((args.assets/'manifest.json').read_bytes()),
           'method':'explicit-context-loading; tool-free structured code generation; uniform frame-assisted revision',
           'limitations':['Host discovery skip uses an under-development CLI flag.','No human quality ratings at generation time.','Review model receives frames, not complete video playback.'],
@@ -197,6 +201,10 @@ def main():
             result=run_task(topic,rep,arm,args.output,args.assets,manifest,args,bundle)
             meta['results'].append(result)
             (args.output/'manifest.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2))
+            if 'generation_infra_failed' in json.dumps(result):
+                meta['batch_status']='BLOCKED_INFRA'
+                (args.output/'manifest.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2))
+                raise RuntimeError('Generation infrastructure failed; batch stopped without a quality verdict.')
             if 'protocol_or_response_failed' in json.dumps(result):raise RuntimeError('Protocol or response failed; audit before continuing.')
     print('BATCH COMPLETE',args.phase,flush=True)
 
