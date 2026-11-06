@@ -42,3 +42,22 @@ Regenerate both A and B once on the same T2 task and common budget. Keep the nex
 pair regardless of outcome. Stop this development round after that pair; no more
 retries to seek a preferred winner. A promotional claim requires an actual useful
 observable difference, not merely more motion or a manually authored substitute.
+
+## v0.5: scene preset after explicit owner rejection
+
+The owner judged the v0.4 camera-only difference insufficient. That pair remains
+unchanged and does not enter the promotional episode. This is a product change,
+not another draw from the same frozen v0.4 treatment.
+
+Add a reusable spatial comparison preset with object assembly, a common metric
+and shared measuring pass. It contains generic layout and behavior but no T2
+values, task labels, narration, camera shots or completed composition. The model
+must configure these from the original brief. Disclose that the Skill now includes
+a scene preset; do not claim the outcome comes from prompt instructions alone.
+
+Keep exactly the same T2 question, common prompt, audio, model and per-arm budget.
+Run both arms afresh once (AB), preserving both initial and review outputs. No
+manual changes to generated Scene source, no rerun to seek a stronger result and
+no directed reference substituted. The sole new treatment is the revised package.
+Inspect correct common scale and phone readability as well as visible contrast.
+This development case is not independent transfer or human blind-evaluation proof.

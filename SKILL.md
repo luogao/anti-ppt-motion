@@ -1,6 +1,6 @@
 ---
 name: anti-ppt-motion
-description: Apply a scene-led visual style to narrated motion explainers using connected spatial scenes, close-to-wide camera moves, reusable Remotion code, and time-coded revision. Use when the user wants an anti-slideshow motion style with purposeful framing changes.
+description: Build spatial motion explainers with reusable scene presets, object assembly, shared-scale comparisons and purposeful framing. Use when a narrated explainer needs a scene-based alternative to fixed animated charts or successive text slides.
 license: MIT
 ---
 
@@ -8,7 +8,7 @@ license: MIT
 
 这是偏向“连续场景＋明确景别变化”的 Motion 导演风格。调用本 Skill 后，默认按这种画面语言制作：主体持续存在，镜头通过靠近、跟随或拉远揭示信息，最后停在可读的结果上。沿用用户的工具、素材和时长；用户明确指定固定机位、静态图表或严格还原时，以用户要求为准。
 
-目标不只是把任务完成为一张普通排版的动画图表。数据图表也应从局部事实、关系揭示走到最终共同比较；全段始终一个观察位置、只换标题和数值，不算完成本 Skill 的默认风格。
+本包带可执行场景预设，不只是“运镜大一点”的提示。主体的组织方式也要参与解释：任务对象怎样拼成总量、同一单位怎样支持比较。把同一张普通图表放大再缩小，不足以完成默认风格。
 
 ## 先把口播变成场景
 
@@ -16,7 +16,9 @@ license: MIT
 
 一条口播句子不等于一页。先找全段持续解释的主对象，再用几拍记录“观众新理解什么 → 哪个可见变化让它成立”。每拍写出主体、前后状态、关键口播词，以及它如何接到下一拍；简短记录即可。
 
-从 [可执行配方](references/shot-recipes.md) 选择适配的场景结构，先写实际镜头：哪一个主体被近看、哪次取景变化露出新关系、何时落定结果。源码要实现这些镜头。Remotion 默认先用配方链接的 `CameraGroup` 搭出同一空间和帧驱动取景，再布置对象；平面图形或体块均可，当前项目有等价机制时可沿用。
+从 [可执行配方](references/shot-recipes.md) 选择适配结构。Remotion 中遇到“两组分段时间或数量比较”，默认先用资源中的 `ComparisonWorld`：任务体块落到各自轨道，拼成总量，再以同一标尺看差异。它已经提供立体场景与对象组装；根据真实数据、单位、口播和屏幕安全区配置，不能保留示例假数据。其他题材按其实际对象设计，不硬套比较预设。
+
+镜头围绕这组对象展开：哪一个主体被近看、怎样随着组装露出整体、何时确认比较。用 `CameraGroup` 设置取景，保持双方共同缩放；当前项目有等价机制时可以沿用。预设和镜头都是真正交付给用户的源代码，不能把其效果宣称为纯提示词能力。
 
 近景要让主对象主导画面，拉远要露出此前在画外的关系。根据对象尺寸计算缩放，不把微小漂移或 1.00→0.96 的缩放当作景别变化。多拍衔接需要细化时读 [场景编排](references/scene-grammar.md)。
 

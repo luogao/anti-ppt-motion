@@ -2,8 +2,8 @@
 
 面向口播解释视频的场景式 Motion Skill：连续空间、明确的景别变化，以及可复用的镜头代码。
 
-本开发分支已完成新版的一对实际输出：未加载版展示完整图表，加载版从局部拉远到全貌。
-所有者反馈“对比不是很强烈”，本轮不进入宣传片制作；尚无独立真人盲评。
+前一轮由全图改为局部拉远，所有者反馈“对比不是很强烈”，没有进入宣传片制作。
+本开发分支新增可配置的空间比较场景预设，正在同一道题上验证；尚无独立真人盲评。
 旧版对照未显示令人信服的增益，失败记录保留；定向制作的参考片不作为实验结果。
 [第一轮公开记录](https://github.com/luogao/anti-ppt-motion/releases/tag/experiment-v0.1)。
 
@@ -11,11 +11,12 @@
 
 - [SKILL.md](SKILL.md)：调用后默认采用连续场景与近景到全貌的画面语言，用户明确要求优先。
 - [镜头配方](references/shot-recipes.md)：局部事实、关系揭示、共同尺度比较和机制变化。
-- [scene-world.tsx](assets/scene-world.tsx)：可复制到 Remotion 项目的 `CameraGroup`、`WorldBlock` 和正交投影。
+- [scene-world.tsx](assets/scene-world.tsx)：可复制到 Remotion 项目的 `ComparisonWorld` 场景预设、镜头与空间体块。
 - 场景承接、问题定位与按时间码返修参考。
 
 这是方法加代码资源的包，当前验证工作流为 Codex 显式加载 + Remotion。
-它不是只有提示词的实验，也没有更换两组的渲染引擎。空间代码仅依赖已有 React / Remotion；
+它不是只有提示词的实验，也没有更换两组的渲染引擎。场景预设包含对象组装与共同标尺，
+Agent 按内容配置数据、时序、标签和镜头。空间代码仅依赖已有 React / Remotion；
 不带字体、音乐、私有 Motion Kit、预渲染成片或当前测试题的完整场景。
 
 ## 使用
@@ -23,7 +24,7 @@
 取得本次开发版（`main` 仍保留首轮版本）：
 
 ```sh
-git clone --branch feat/resource-backed-skill --single-branch \
+git clone --branch feat/scene-preset-skill --single-branch \
   https://github.com/luogao/anti-ppt-motion .agents/skills/anti-ppt-motion
 ```
 
