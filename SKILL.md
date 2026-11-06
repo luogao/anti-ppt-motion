@@ -1,6 +1,6 @@
 ---
 name: anti-ppt-motion
-description: Compose narrated motion scenes through persistent objects, connected beats, purposeful framing, and time-coded revision. Use for motion explainers that feel like successive text slides or repeated dashboard layouts.
+description: Build narrated motion videos with reusable scene and camera recipes, persistent subjects, spatial reveals, and time-coded revision. Use when a motion explainer needs stronger scene composition than successive text slides or fixed dashboards.
 license: MIT
 ---
 
@@ -14,7 +14,9 @@ license: MIT
 
 一条口播句子不等于一页。先找全段持续解释的主对象，再用几拍记录“观众新理解什么 → 哪个可见变化让它成立”。每拍写出主体、前后状态、关键口播词，以及它如何接到下一拍；简短记录即可。
 
-多拍内容先读 [场景编排](references/scene-grammar.md)。让主体保持可追踪的身份，空间和因果关系随着讲述展开。先设计对象与关系，再决定标题、容器和镜头。不要默认“页顶标题＋中间卡片＋页底总结”贯穿每一拍。
+从 [可执行配方](references/shot-recipes.md) 选择适配的场景结构，填写主体、前后状态、近景目标、将被揭示的关系和最终取景；让画面按这份结构制作，而不只给“注意运镜”的提示。Remotion 中可复用配方链接的空间与镜头代码。多拍衔接需要细化时读 [场景编排](references/scene-grammar.md)。
+
+让主体保持可追踪的身份，空间和因果关系随着讲述展开。先设计对象与关系，再决定标题、容器和镜头。不要默认“页顶标题＋中间卡片＋页底总结”贯穿每一拍。
 
 根据内容选择状态变化、路径与因果、积累与释放、差异揭示。需要选型或缺少创意时读 [动作方法](references/motion-methods.md)，不必每次把四种全用上。
 

@@ -124,7 +124,7 @@ def render(folder, args):
             'decoded_audio_sha256':sha(subprocess.check_output(['ffmpeg','-v','error','-i',str(folder/'video.mp4'),'-map','0:a:0','-ac','1','-ar','48000','-f','s16le','-']))}
 
 
-def stage(task, name, answer, args):
+def stage(task, name, answer, args, skill_resource=None):
     folder=task/name
     shutil.copytree(STARTER/'src',folder/'src')
     for file in ['package.json','tsconfig.json','package-lock.json']:
@@ -134,6 +134,8 @@ def stage(task, name, answer, args):
     shutil.copy2(task/'narration.wav',folder/'public/narration.wav')
     if (task/'product-flow.mp4').exists():shutil.copy2(task/'product-flow.mp4',folder/'public/product-flow.mp4')
     (folder/'src/Scene.tsx').write_text(answer['scene_tsx'])
+    if skill_resource is not None:
+        shutil.copy2(skill_resource,folder/'src/scene-world.tsx')
     (folder/'plan.md').write_text(answer['plan'])
     return render(folder,args)
 
