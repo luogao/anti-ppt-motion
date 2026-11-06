@@ -27,3 +27,18 @@ Preselect this pair as its showcase before generation; assess factual accuracy,
 phone readability, actual camera/scene changes and the owner's visual judgment.
 If there is still no convincing gain, do not cut a promotional success story.
 Independent blind ratings and generalization remain separate follow-up work.
+
+## Following revision: explicit scene-led default
+
+The first resource-backed pair still selected a fixed flat chart and did not
+import the optional resource. Preserve that v0.3 pair and its exact input snapshot.
+The next revision clarifies the product's default visual style: invocation opts
+into connected scenes and meaningful close-to-wide framing, while explicit user
+requests for fixed/static views still take precedence. Data accuracy and the
+common comparison scale remain mandatory. This is a visual-style capability,
+not a universal claim that moving cameras improve comprehension.
+
+Regenerate both A and B once on the same T2 task and common budget. Keep the next
+pair regardless of outcome. Stop this development round after that pair; no more
+retries to seek a preferred winner. A promotional claim requires an actual useful
+observable difference, not merely more motion or a manually authored substitute.

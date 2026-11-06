@@ -1,12 +1,14 @@
 ---
 name: anti-ppt-motion
-description: Build narrated motion videos with reusable scene and camera recipes, persistent subjects, spatial reveals, and time-coded revision. Use when a motion explainer needs stronger scene composition than successive text slides or fixed dashboards.
+description: Apply a scene-led visual style to narrated motion explainers using connected spatial scenes, close-to-wide camera moves, reusable Remotion code, and time-coded revision. Use when the user wants an anti-slideshow motion style with purposeful framing changes.
 license: MIT
 ---
 
 # Anti-PPT Motion
 
-让画面参与解释：观众能从对象的变化、关系或证据中理解内容，而不是只读不断换页的文字。沿用用户选择的工具、风格、素材、时长和项目约束。
+这是偏向“连续场景＋明确景别变化”的 Motion 导演风格。调用本 Skill 后，默认按这种画面语言制作：主体持续存在，镜头通过靠近、跟随或拉远揭示信息，最后停在可读的结果上。沿用用户的工具、素材和时长；用户明确指定固定机位、静态图表或严格还原时，以用户要求为准。
+
+目标不只是把任务完成为一张普通排版的动画图表。数据图表也应从局部事实、关系揭示走到最终共同比较；全段始终一个观察位置、只换标题和数值，不算完成本 Skill 的默认风格。
 
 ## 先把口播变成场景
 
@@ -14,7 +16,9 @@ license: MIT
 
 一条口播句子不等于一页。先找全段持续解释的主对象，再用几拍记录“观众新理解什么 → 哪个可见变化让它成立”。每拍写出主体、前后状态、关键口播词，以及它如何接到下一拍；简短记录即可。
 
-从 [可执行配方](references/shot-recipes.md) 选择适配的场景结构，填写主体、前后状态、近景目标、将被揭示的关系和最终取景；让画面按这份结构制作，而不只给“注意运镜”的提示。Remotion 中可复用配方链接的空间与镜头代码。多拍衔接需要细化时读 [场景编排](references/scene-grammar.md)。
+从 [可执行配方](references/shot-recipes.md) 选择适配的场景结构，先写实际镜头：哪一个主体被近看、哪次取景变化露出新关系、何时落定结果。源码要实现这些镜头。Remotion 默认先用配方链接的 `CameraGroup` 搭出同一空间和帧驱动取景，再布置对象；平面图形或体块均可，当前项目有等价机制时可沿用。
+
+近景要让主对象主导画面，拉远要露出此前在画外的关系。根据对象尺寸计算缩放，不把微小漂移或 1.00→0.96 的缩放当作景别变化。多拍衔接需要细化时读 [场景编排](references/scene-grammar.md)。
 
 让主体保持可追踪的身份，空间和因果关系随着讲述展开。先设计对象与关系，再决定标题、容器和镜头。不要默认“页顶标题＋中间卡片＋页底总结”贯穿每一拍。
 
@@ -24,12 +28,13 @@ license: MIT
 
 给每个衔接一个具体动作：同一对象继续前进、对象变形成为下一主体、视野扩展揭示关系，或因果路径把视线带到结果。若选择切镜，说清新镜头增加了什么证据。把前一拍末态和下一拍初态接起来，避免靠淡出全页、再淡入一组新卡片推进论点。
 
-镜头距离与取景也参与讲述：需要看操作时靠近，解释整体关系时扩大视野，发生移动时可跟随。不能把镜头沿几张独立海报平移当作连续场景。固定镜头、文字、停顿与切镜仍可成立；不用无目的漂移凑运动量。
+镜头距离与取景参与讲述：看操作时靠近，解释整体关系时扩大视野，发生移动时可跟随。不能把镜头沿几张独立海报平移当作连续场景。为阅读证据和确认结果可以停住，镜头不必一直动；但要保留能指认的近景与全貌差别，不用无目的漂移凑运动量。
 
 ## 制作前的三项检查
 
 - 暂时遮掉标题：主体的动作、数量或关系能否解释关键判断？只换文案而画面组织不变的拍子需要重做。
 - 连看三拍：是否都在同一固定容器内换数字、换标题或依次亮卡？如果是，先重排主体与空间，不能只改配色、字体和入场效果。
+- 对照镜头记录：实际画面是否有主体占屏明显不同的取景？是否真的揭示了新信息？如果只有计划写了运镜、代码仍是固定全景，先修正实现。
 - 沿主对象走一遍：它从哪里来，到哪里去，为什么改变？画面是否把关键因果变成了可见事件？这些检查是设计约束，不是模型自证效果。
 
 ## 制作与返修
